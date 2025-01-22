@@ -27,7 +27,7 @@ To use this repository, you need the following:
 
 # *Step 0*
 
-### 1. Verify Input Files
+### 1. Checklist
 Check that all required raw data are complete and uncorrupted:
 - `step0_experiment_data.py`
 - `step0_snr_model.h`
@@ -37,12 +37,12 @@ Edit the `SAVE_DIR` and `RESULT_DIR` in `step0_config.h` to specify your preferr
 
 Edit the `DURATION_init`, `DURATION_test`, `NUM_conductance`, `NUM_current` for your preferred experiment design.
 ### 3. [Optional] Generate Shell Commands
-Run `step0_generate_commands.py` to create `.sh` shell scripts for use in later steps.
+Run `step0_generate_commands.py` to create `.sh` shell scripts in `sh_commands` directory for later steps.
 
 # *Step 1*
 
-### 4. Compile and Run Data Preparation
-Compile and execute `step1_prepare.c`. This step performs a grid search over the $g_{HCN}\ \times\ I_{app} $ space and generates following `intermediate data` files:
+### 4. Grid Search Parameter Space
+Compile and execute `step1_prepare.c`. This step performs a grid search over the $g_{HCN}\ \times \ I_{app}$ space and generates following `intermediate data` files:
 
 - `prepared_g.bin`: Range of $g_{HCN}$
 - `prepared_I.bin`: Range of $\ I_{app} $
@@ -75,17 +75,19 @@ Compile `step3_main.c`. Then you can either
 
 or
 
-- Execute `step3_main`. With following arguments implemented:
+- Execute `step3_main`. With following arguments:
   - `-GPe`: The GPe input weight. See `W_GPe` in `step0_snr_model.h`.
   - `-Str`: The Str input weight. See `W_Str` in `step0_snr_model.h`.
   - `-tau`: The time constant for GPe/Str input. See `tau_GABA_som` and `tau_GABA_den` in `step0_snr_model.h`.
-  - `-GPe_stim`: The time of GPe stim, in milliseconds, -1 for no stim.
-  - `-Str_stim`: The time of Str stim, in milliseconds, -1 for no stim.
+  - `-GPe_stim`: The onset time of GPe stim, in milliseconds, -1 for no stim.
+  - `-Str_stim`: The onset time of Str stim, in milliseconds, -1 for no stim.
   - `-HCN`: Chose from `den`, `som`, `zero`, for HCN inserted on dendrite, soma, and nowhere.
   - `-o`: Task_id for you saved result filename.
 
-The simulation result (rasters for every $I_{app}$ and its optimal $g_{HCN}$, see `step1_prepare.c` and `step0_config.h`) 
-would in **one row**. It has `NUM_current` blocks, the first number `num_spikes` of each block is the number of spikes in this block, and the following `num_spikes` numbers if the timepoints of each spike in milliseconds.
+The `step3_main` will simulate SNr cell for every $I_{app}$ and its optimal $g_{HCN}$, see `step1_prepare.c` and `step0_config.h`.
+Simulation results (rasters) are saved in **one row** with NUM_current blocks. Each block contains following elements consecutively:
+- `num_spikes`: just the number of spikes in this trial
+- `spike_times`: `num_spikes` number of spike timestamps in milliseconds. 
 
 >**Execution Time**: ~2hr for `run_all.sh`.
 
@@ -99,6 +101,7 @@ Run `step3_plotting.py` to plot your raster in `Result` directory.
 ---
 
 ## Contact
+For any questions, please contact:
  <yag2@andrew.cmu.edu>
 
 ---
