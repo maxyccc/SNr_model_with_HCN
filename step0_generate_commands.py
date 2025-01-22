@@ -17,19 +17,19 @@ def generate_sh_file(HCN_choice, stimulus_choice):
     try:
         with open(file_path, 'w') as file:
             file.write('#!/bin/bash\n')
-            init_block = f"../step3_main.exe -HCN {HCN_choice} "
+            init_block = f"./step3_main.exe -HCN {HCN_choice} "
 
             if stimulus_choice == "GPe":
                 for i, (tmp_tau, tmp_W) in enumerate(zip(tau_GPe, W_GPe)):
                     file.write(init_block + f"-GPe {tmp_W} -tau {tmp_tau} -GPe_stim 1000 -Str_stim -1 "
-                                            f"-o ./result/raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_{i} \n")
+                                            f"-o raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_{i} \n")
             elif stimulus_choice == "Str":
                 for i, (tmp_tau, tmp_W) in enumerate(zip(tau_Str, W_Str)):
                     file.write(init_block + f"-Str {tmp_W} -tau {tmp_tau} -Str_stim 1000 -GPe_stim -1 "
-                                            f"-o ./result/raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_{i} \n")
+                                            f"-o raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_{i} \n")
             elif stimulus_choice == "none":
                 file.write(init_block + f"-Str_stim -1 -GPe_stim -1 "
-                                        f"-o ./result/raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_0 \n")
+                                        f"-o raster_HCN_{HCN_choice}_Stim_{stimulus_choice}_0 \n")
 
         print(f'Data written to the {file_path} successfully.')
     except Exception as e:

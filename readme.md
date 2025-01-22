@@ -33,7 +33,7 @@ Check that all required raw data are complete and uncorrupted:
 - `step0_snr_model.h`
 
 ### 2. Modify Configuration
-Edit the `SAVE_DIR` in `step0_config.h` to specify your preferred directory for saving `intermediate data` files.
+Edit the `SAVE_DIR` and `RESULT_DIR` in `step0_config.h` to specify your preferred directory for saving `intermediate data` files and raster `result`.
 
 Edit the `DURATION_init`, `DURATION_test`, `NUM_conductance`, `NUM_current` for your preferred experiment design.
 ### 3. [Optional] Generate Shell Commands

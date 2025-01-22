@@ -49,14 +49,14 @@ int batch_simulation(double W_GPe, double W_Str, double tau, const char* HCN,
     read_binary_file(filename, g_HCN, &N0);
 
     // load current
-    strcpy(filename, SAVE_DIR "task4_I.bin");
+    strcpy(filename, SAVE_DIR "prepared_I.bin");
     double I[NUM_current];
     size_t N1;
     printf("%s \n", filename);
     read_binary_file(filename, I, &N1);
 
     // simulate for all possible conductances
-    strcpy(filename, SAVE_DIR);
+    strcpy(filename, RESULT_DIR);
     strcat(filename, task_id);
     strcat(filename, ".csv");
     FILE *result = fopen(filename, "w");
@@ -84,8 +84,8 @@ int batch_simulation(double W_GPe, double W_Str, double tau, const char* HCN,
             fprintf(result, "%f,", spikes.spike_times[i]);
         }
         free(spikes.spike_times);
-        fprintf(result, "END\n");
     }
+    fprintf(result, "END\n");
     fclose(result);
     printf("Result saved in %s \n", filename);
     return 0;

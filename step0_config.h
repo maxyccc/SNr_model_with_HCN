@@ -12,6 +12,7 @@ const int CONFIG_spikes_init_size = 1e4;
 
 // Path
 # define SAVE_DIR "C:/Users/maxyc/CLionProjects/SNr_model_with_HCN/intermediate_data/"
+# define RESULT_DIR "C:/Users/maxyc/CLionProjects/SNr_model_with_HCN/result/"
 
 // setup
 const int NUM_conductance = 32;
