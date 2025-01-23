@@ -8,7 +8,13 @@ The HCN channel can be optionally included on the soma or dendrites. The model i
 
 This SNr neuron model is adapted from:
 
-- **Phillips RS, Rosner I, Gittis AH, & Rubin JE (2020)**. *The effects of chloride dynamics on substantia nigra pars reticulata responses to pallidal and striatal inputs.* eLife. [Link](https://elifesciences.org/articles/55592)
+- **Phillips RS, Rosner I, Gittis AH, & Rubin JE (2020)**. *The effects of chloride dynamics on substantia nigra pars reticulata responses to pallidal and striatal inputs.* eLife. [View the article](https://elifesciences.org/articles/55592)
+
+Below is the model schematic diagram from the paper:  
+
+[//]: # (&#40;*Note: The KCC2 channel is not implemented in this repository so far.*&#41;)
+
+<img src="figures\model_schematics.png" alt="model schematic" style="width:600px;"/>
 
 The pipeline was adapted and simplified from this [repository](https://github.com/JiananJian/SNr_Model_ACC).
 
