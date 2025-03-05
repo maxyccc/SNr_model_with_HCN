@@ -1,0 +1,1 @@
+step3_simulation.exe -HCN den -GPe 0.03047575 -tau 8.38447 -GPe_stim 1000 -Str_stim -1 -o mitten -num 1 -g_HCN 1.5 -I_app -50
