@@ -34,13 +34,15 @@ The pipeline was adapted and simplified from this [repository](https://github.co
 
 ## *Step 0* - prepare
 
----
+<br>
 
 ### 0.1 Check file integrity
 Check that all required raw data are complete and uncorrupted under directory `bio_data`:
 - `EphysMeasurement.py`: ephys measurement of GPe/Str input conductance and time constants.
 - `OnePulse.xlsx`: spike series from electrode recording.
 - `SNrModel.h`: head file for the SNr neuron model. (see [reference](https://elifesciences.org/articles/55592) for better understanding)
+
+---
 
 ### 0.2 Modify Configuration 
 Edit the `SAVE_DIR` and `RESULT_DIR` in `step0_config.h` to specify your preferred directory for saving `intermediate data` files and `simulation result` files.
@@ -60,10 +62,12 @@ $g_{HCN}\ \times \ I_{app}$ space and generates following `intermediate_result` 
 - `prepared_r_den.bin`: firing rates with HCN channels in dendritic compartments for each grid
 - `prepared_r_som.bin`: firing rates with HCN channels in somatic compartments for each grid
 
----
+<br>
+
 You can edit `step0_config.h` to change the search space. See `step1_grid_search_g_HCN.c: line 63` for further details.
 
----
+<br>
+
 To run this step:
 ```bash
 clang -o step1_grid_search_g_HCN.exe step1_grid_search_g_HCN
@@ -81,7 +85,7 @@ Run `step2_find_proper_g_value.py` to sample the ($I_{app}, g_{HCN}$) pairs base
 Based on our data, we expect a **32% reduction in firing rate** when the HCN channel is blocked. 
 Thus, given the target firing rate, we sample $g_{HCN}$ and its corresponding $I_{app}$ following this criterion.  
 
----
+<br>
 
 This step creates the following files in `intermediate_data`:
 
@@ -140,7 +144,7 @@ clang -o step3_simulation.exe step3_simulation
 step3_simulation.exe -HCN den -GPe 0.03047575 -tau 8.38447 -GPe_stim 1000 -Str_stim -1 -o mitten -num 1 -g_HCN 1.5 -I_app -50
 ```
 
----
+<br>
 
 The `step3_simulation` will simulate SNr cell for every / specified $I_{app}$ - $g_{HCN}$ pairs.
 Simulation results (rasters) are saved in `.csv` format with **one row** of `num` blocks. Each block contains following elements consecutively:
