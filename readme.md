@@ -179,6 +179,7 @@ This scripts will automatically detect whether your simulation is `single-type` 
 Also includes an aggregated `.xlsx` data sheet stored in directory `simulation_result`. The aggregated `.xlsx` file
 include multiple columns. Each column represents one trial/simulation and different settings will be marked at first row.
 <img src="figures\20250305_131941_den_HCN_den.jpg" alt="multiple simulation" style="width:600px;"/>
+
 ---
 
 # Contact
