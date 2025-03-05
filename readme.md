@@ -34,7 +34,6 @@ The pipeline was adapted and simplified from this [repository](https://github.co
 
 ## *Step 0* - prepare
 
-<br>
 
 ### 0.1 Check file integrity
 Check that all required raw data are complete and uncorrupted under directory `bio_data`:
@@ -93,13 +92,13 @@ This step creates the following files in `intermediate_data`:
 - `selected_g_HCN_som.bin`: selected $g_{HCN}$ of somatic HCN channel simulation
 - `selected_g_HCN_zero.bin`: selected $g_{HCN}$ of simulation without HCN channel
 - `selected_I_HCN_den.bin`: corresponding $I_{app}$ for each $g_{HCN}$ in `selected_g_HCN_den.bin`
-- `selected_r_HCN_den.bin`: corresponding firing rate for each $g_{HCN}$-$I_{app}$ pairs in `selected_g_HCN_den.bin` and `selected_I_HCN_den.bin`
+- `selected_r_HCN_den.bin`: corresponding firing rate for each ($g_{HCN}$, $I_{app}$) pairs in `selected_g_HCN_den.bin` and `selected_I_HCN_den.bin`
 - `...`
 
 and two figures in `figures` directory:
 
-- `grid_search_result.jpg`: grid search result for all 3 simulation types.  
-*viridis*: somatic HCN. *cool*: dendritic HCN. *gray*: no HCN. Two black line indicate the optimal $g_{HCN}$-$I_{app}$ pairs that satisfy the **32% reduction** criterion.  
+- `grid_search_result.jpg`: grid search result for all 3 simulation types (*viridis*: somatic HCN. *cool*: dendritic HCN. *gray*: no HCN).
+Two black line indicate the optimal ($g_{HCN}$, $I_{app}$) pairs that satisfy the **32% reduction** criterion.  
 
 - `frequency_histogram.jpg`: histogram for target baseline firing rate distribution, see `step2_generate_I_g_pairs.py: line 104` for further details. Also includes histograms for electrode-recorded data and final sampled results.
 
@@ -146,7 +145,7 @@ step3_simulation.exe -HCN den -GPe 0.03047575 -tau 8.38447 -GPe_stim 1000 -Str_s
 
 <br>
 
-The `step3_simulation` will simulate SNr cell for every / specified $I_{app}$ - $g_{HCN}$ pairs.
+The `step3_simulation` will simulate SNr cell for every/specified ($I_{app}$, $g_{HCN}$) pairs.
 Simulation results (rasters) are saved in `.csv` format with **one row** of `num` blocks. Each block contains following elements consecutively:
 - `num_spikes`: the number of spikes in this trial
 - `spike_times`: `num_spikes` number of spike timestamps in milliseconds. 
