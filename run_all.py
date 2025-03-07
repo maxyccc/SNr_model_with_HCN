@@ -9,8 +9,8 @@ from datetime import datetime
 
 tau_Str = np.around(np.array(tau_D1) * 1000., decimals=8)  # s -> ms
 tau_GPe = np.around(np.array(tau_GPe) * 1000., decimals=8)  # s -> ms
-W_Str = np.around(np.array(g_D1) / 100, decimals=8)  # nS -> nS/pF
-W_GPe = np.around(np.array(g_GPe) / 800, decimals=8)  # nS -> nS/pF
+W_Str = np.around(np.array(g_D1) / 250, decimals=8)  # nS -> nS/pF
+W_GPe = np.around(np.array(g_GPe) / 2000, decimals=8)  # nS -> nS/pF
 
 script_dir = path.join(path.dirname(__file__), "sh_commands")
 result_dir = path.join(path.dirname(__file__), "simulation_result")

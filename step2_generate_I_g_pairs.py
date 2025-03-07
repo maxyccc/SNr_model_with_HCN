@@ -24,8 +24,9 @@ def generate_I_g_pairs(required_fr):
     # no HCN baseline
     h.plot_surface(gg, II, np.tile(r0[np.newaxis, order_I], (len(g), 1)),
                    color='gray', edgecolor='none', alpha=0.3)
-    required_I = np.interp(required_fr, r0, I)
-    required_r = np.interp(required_fr, r0, r0)
+    required_fr_zero = required_fr*0.68
+    required_I = np.interp(required_fr_zero, r0, I)
+    required_r = np.interp(required_fr_zero, r0, r0)
     write_data(f"selected_I_HCN_zero.bin", required_I)
     write_data(f"selected_g_HCN_zero.bin", np.zeros_like(required_I))
     write_data(f"selected_r_HCN_zero.bin", required_r)
@@ -103,7 +104,7 @@ def main():
     ###################################################################
     NUM_sample = 1000
     MAX_Fr = 60  # Hz
-    required_fr = np.random.normal(loc=25, scale=8.0, size=NUM_sample*5)
+    required_fr = np.random.normal(loc=25, scale=12.0, size=NUM_sample*5)
     required_fr = required_fr[required_fr<MAX_Fr][:NUM_sample]
     print(required_fr.shape, np.mean(required_fr), np.std(required_fr))
     generate_I_g_pairs(required_fr)
